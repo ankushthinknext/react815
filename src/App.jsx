@@ -27,6 +27,9 @@ import {
 import Dashboard from "./screens/Dashboard";
 import Sidebar from "./components/sidebar/Sidebar";
 import LoginScreen from "./screens/LoginScreen";
+import Users from "./components/users/Users";
+import Categories from "./components/categories/Categories";
+import Transactions from "./components/transactions/Transactions";
 
 export const data = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -74,7 +77,9 @@ function App() {
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/" element={<Dashboard />}>
             <Route path="products" element={<Products />} />
-            <Route path="counter" element={<Counter />} />
+            <Route path="users" element={<Users />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="transactions" element={<Transactions />} />
           </Route>
         </Routes>
       </CartContext.Provider>

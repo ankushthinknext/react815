@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import Joi from "joi";
 import { http } from "../../config/axiosConfig";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert2";
 
 const loginSchema = Joi.object({
   email: Joi.string()
@@ -16,6 +18,8 @@ const loginSchema = Joi.object({
 function Login() {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState([]);
+
+  const navigate = useNavigate();
 
   const handleFormChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,6 +38,9 @@ function Login() {
       .then(res => {
         if (res.status === 200) {
           setErrors([]);
+          localStorage.setItem("token", res.data.token);
+          swal.fire("Login Success", "User Logged in", "success");
+          navigate("/");
         }
       })
       .catch(err =>
